@@ -1,5 +1,6 @@
 package qasoft.cotacts_jwt.Demo;
 
+import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +25,7 @@ public class DemoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Contact> getContactById(@PathVariable Long id) {
+    public ResponseEntity<Contact> getContactById(@PathVariable Integer id) {
         Optional<Contact> contact = contactService.getContactById(id);
         if (contact.isPresent()) {
             return ResponseEntity.ok(contact.get());
@@ -39,7 +40,7 @@ public class DemoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Contact> updateContact(@PathVariable Long id, @RequestBody Contact contactDetails) {
+    public ResponseEntity<Contact> updateContact(@PathVariable Integer id, @RequestBody Contact contactDetails) {
         try {
             Contact updatedContact = contactService.updateContact(id, contactDetails);
             return ResponseEntity.ok(updatedContact);
@@ -49,7 +50,7 @@ public class DemoController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteContact(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteContact(@PathVariable Integer id) {
         try {
             contactService.deleteContact(id);
             return ResponseEntity.noContent().build();

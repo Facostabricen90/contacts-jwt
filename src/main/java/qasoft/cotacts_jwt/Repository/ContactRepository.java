@@ -6,5 +6,5 @@ import qasoft.cotacts_jwt.Model.Contact;
 import java.util.List;
 
 public interface ContactRepository extends JpaRepository <Contact, Integer>{
-    List<Contact> findByIdUser(String nameUser);
+    List<Contact> findByNameUser(String nameUser);
 }

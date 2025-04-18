@@ -25,7 +25,7 @@ public class ContactService {
         } else {
             username = principal.toString();
         }
-        return contactRepository.findByIdUser(username);
+        return contactRepository.findByNameUser(username);
     }
 
 
@@ -45,12 +45,12 @@ public class ContactService {
     }
 
 
-    public Optional<Contact> getContactById(Long id) {
-        return contactRepository.findById(Math.toIntExact(id));
+    public Optional<Contact> getContactById(Integer id) {
+        return contactRepository.findById(id);
     }
 
-    public Contact updateContact(Long id, Contact contactDetails) {
-        return contactRepository.findById(Math.toIntExact(id)).map(contact -> {
+    public Contact updateContact(Integer id, Contact contactDetails) {
+        return contactRepository.findById(id).map(contact -> {
             contact.setName(contactDetails.getName()); // Cambiar los campos correspondientes
             contact.setEmail(contactDetails.getEmail()); // Ejemplo
             contact.setPhone(contactDetails.getPhone()); // Ejemplo
@@ -58,8 +58,8 @@ public class ContactService {
         }).orElseThrow(() -> new RuntimeException("Contacto no encontrado con ID: " + id));
     }
 
-    public void deleteContact(Long id) {
-        contactRepository.deleteById(Math.toIntExact(id));
+    public void deleteContact(Integer id) {
+        contactRepository.deleteById(id);
     }
 
 }
